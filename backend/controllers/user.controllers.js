@@ -14,7 +14,7 @@ export const register = async (req, res) => {
                 success: false
             });
         };
-        // const file = req.file;
+        // const file = req.file; 
         // const fileUri = getDataUri(file);
         // const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
@@ -31,7 +31,7 @@ export const register = async (req, res) => {
             fullname,
             email,
             phoneNumber,
-            password:hashedPassword,
+            password: hashedPassword,
             role,
             // profile:{
             //     profilePhoto:cloudResponse.secure_url,
@@ -116,24 +116,26 @@ export const updateProfile = async (req, res) => {
         const { fullname, email, phoneNumber, bio, skills } = req.body;
         
         const file = req.file; 
-        if(fullname || email || phoneNumber || bio || skills)
-        {
-            return res.status(400).json({
-                message:"somethig is missing",
-                success: false
-            });
+        let skillsArray;
+        if(skills){
+            skillsArray = skills.split(",");
         }
+        // if(!fullname || !email || !phoneNumber || !bio || !skills)
+        // {
+        //     return res.status(400).json({
+        //         message:"somethig is missing",
+        //         success: false
+        //     });
+        // }
         // cloudinary ayega idhar
         // const fileUri = getDataUri(file);
         // const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
-        const skillsArray=skills.split(",");
-        const user=await User.findById(UserId);
+        // const skillsArray=skills.split(",");
+        const UserId=req.id;
+        let user=await User.findById(UserId);
 
-        // let skillsArray;
-        // if(skills){
-        //     skillsArray = skills.split(",");
-        // }
+         
         // const userId = req.id; // middleware authentication
         // let user = await User.findById(userId);
 
@@ -144,11 +146,11 @@ export const updateProfile = async (req, res) => {
             })
         }
         // updating data
-        // if(fullname) user.fullname = fullname
-        // if(email) user.email = email
-        // if(phoneNumber)  user.phoneNumber = phoneNumber
-        // if(bio) user.profile.bio = bio
-        // if(skills) user.profile.skills = skillsArray
+        if(fullname) user.fullname = fullname
+        if(email) user.email = email
+        if(phoneNumber)  user.phoneNumber = phoneNumber
+        if(bio) user.profile.bio = bio
+        if(skills) user.profile.skills = skillsArray
       
         // // resume comes later here...
         // if(cloudResponse){

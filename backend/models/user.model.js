@@ -1,29 +1,35 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    fullname: {
+    fullname: 
+    {
         type: String,
         required: true
     },
-    email: {
+    email: 
+    {
         type: String,
         required: true,
         unique: true
     },
-    phoneNumber: {
+    phoneNumber: 
+    {
         type: Number,
         required: true
     },
-    password:{
+    password:
+    {
         type:String,
         required:true,
     },
-    role:{
+    role:
+    {
         type:String,
         enum:['student','recruiter'],
         required:true
     },
-    profile:{
+    profile:
+    {
         bio:{type:String},
         skills:[{type:String}],
         resume:{type:String}, // URL to resume file

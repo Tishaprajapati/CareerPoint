@@ -20,14 +20,36 @@
 
 import React from 'react'
 import Navbar from './components/shared/navbar'
+import Home from './components/Home'
+// import Home from './components/Home'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+// // import { Home, LogIn } from 'lucide-react'
+import Signup from './components/auth/Signup'
+import Login from './components/auth/Login'
+const appRouter = createBrowserRouter([
+{
+   path:'/',
+   element:<Home/>
+},
+{
+  path:'/login',
+  element:<Login/>
+},
+{
+  path:'/signup',
+  element:<Signup/>
+}
 
-export default function App() {
+])
+function App() {
   return (
-    <>
-    <Navbar/>
-    </>
+    <div>
+      <RouterProvider router = {appRouter}/>
+    </div>
+   
     // <div className = "text-center text-red-400">
     //   Hello
     // </div>
   )
 }
+export default App

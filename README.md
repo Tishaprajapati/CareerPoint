@@ -1,1 +1,1 @@
-# CareerPoint---An-easy-job-grabbing-web-application
+# scholarship-portal
